@@ -1,0 +1,11 @@
+.title{
+    background-color: lightgray;
+}
+
+.editbutton {
+    background-color: skyblue;
+    border-radius: 10px;
+    color: seashell;
+    border-color: skyblue;
+    border-width: 10px;
+}
