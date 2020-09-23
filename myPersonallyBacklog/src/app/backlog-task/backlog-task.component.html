@@ -1,5 +1,5 @@
 <hr>
-<p class="title">Title: {{ backlogTask.title }}</p>
+<p class="title">#{{ backlogTask.id }} - Title: {{ backlogTask.title }}</p>
 <div [ngSwitch]=backlogTask.taskKind>
     <p *ngSwitchCase="0">Kind: {{ "FEATURE" }}</p>
     <p *ngSwitchCase="1">Kind: {{ "Refactoring" }}</p>
@@ -7,10 +7,11 @@
 </div>
 Description: {{ backlogTask.description }}
 <div [ngSwitch]=backlogTask.status>
-    <p *ngSwitchCase="0">Status: {{ "Postponed" }}</p>
-    <p *ngSwitchCase="1">Status: {{ "Planned" }}</p>
-    <p *ngSwitchCase="2">Status: {{ "InProgress" }}</p>
-    <p *ngSwitchCase="3">Status: {{ "Done" }}</p>
+    <p *ngSwitchCase="0">Status: {{ "New" }}</p>
+    <p *ngSwitchCase="1">Status: {{ "Postponed" }}</p>
+    <p *ngSwitchCase="2">Status: {{ "Planned" }}</p>
+    <p *ngSwitchCase="3">Status: {{ "InProgress" }}</p>
+    <p *ngSwitchCase="4">Status: {{ "Done" }}</p>
 </div>
 <button class="editbutton" (click)="onEditClick()">Edit</button>
 <hr>

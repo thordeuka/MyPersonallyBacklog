@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {OnInit} from '@angular/core'
 import { BacklogTask } from './backlog-task/backlogtask.model';
+import { BacklogTaskService } from './backlog-task/backlogtask.service';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +10,20 @@ import { BacklogTask } from './backlog-task/backlogtask.model';
 })
 export class AppComponent implements OnInit {
   
-  public myTasks: BacklogTask[] = [
-    new BacklogTask("Erster Task","Die 1. Beschreibung",BacklogTask.TaskKind.Feature, BacklogTask.Status.Planned),
-    new BacklogTask("Zweiter Task","Die 2. Beschreibung",BacklogTask.TaskKind.Refactoring, BacklogTask.Status.InProgress),
-    new BacklogTask("Dritter Task","Die 4. Beschreibung",BacklogTask.TaskKind.Bug, BacklogTask.Status.Done)
-  ]
+  public  myTasks: BacklogTask[];
+  
+  constructor(private backlogtaskService: BacklogTaskService){}
   
   ngOnInit(): void {
     console.log("ngOnInit()");
-    this.myTasks
+    this.myTasks = this.backlogtaskService.getTasks()
   }
+  
   title = 'myPersonallyBacklog';
+
+  onAddTask(){
+    console.log("OnAddTask()");
+    this.backlogtaskService.addTask({parentId: 1, title: "Title", description: "Descvrg", kind: BacklogTask.TaskKind.Feature});
+  }
 
 }

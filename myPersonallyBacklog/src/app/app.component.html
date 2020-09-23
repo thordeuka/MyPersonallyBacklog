@@ -1,2 +1,3 @@
 <p>The Backlog works fine !!!</p>
 <app-backlog-task *ngFor="let task of myTasks; index as i" [Task]="task"></app-backlog-task>
+<button (click)="onAddTask()">Add</button>
