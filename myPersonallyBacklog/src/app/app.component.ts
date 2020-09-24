@@ -10,16 +10,16 @@ import { BacklogTaskService } from './backlog-task/backlogtask.service';
 })
 export class AppComponent implements OnInit {
   
-  public  myTasks: BacklogTask[];
+  title = 'myPersonallyBacklog';
+  public myTasks: BacklogTask[];
+  public currentaskFilter: BacklogTask.TaskKind[] = [BacklogTask.TaskKind.Feature];
   
   constructor(private backlogtaskService: BacklogTaskService){}
   
   ngOnInit(): void {
     console.log("ngOnInit()");
-    this.myTasks = this.backlogtaskService.getTasks()
+    this.myTasks = this.backlogtaskService.getTasks();
   }
-  
-  title = 'myPersonallyBacklog';
 
   onAddTask(){
     console.log("OnAddTask()");

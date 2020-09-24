@@ -4,15 +4,21 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BacklogTaskComponent } from './backlog-task/backlog-task.component';
+import { TaskKindFilterPipe } from './task-kind-filter.pipe';
+import { FilterBarComponent } from './filter-bar/filter-bar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BacklogTaskComponent
+    BacklogTaskComponent,
+    TaskKindFilterPipe,
+    FilterBarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

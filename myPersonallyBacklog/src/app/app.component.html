@@ -1,3 +1,7 @@
 <p>The Backlog works fine !!!</p>
-<app-backlog-task *ngFor="let task of myTasks; index as i" [Task]="task"></app-backlog-task>
+<app-filter-bar></app-filter-bar>
+<app-backlog-task 
+    *ngFor="let task of myTasks | taskKindFilter:currentaskFilter"
+    [Task]="task">
+</app-backlog-task>
 <button (click)="onAddTask()">Add</button>

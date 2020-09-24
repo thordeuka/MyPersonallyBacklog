@@ -1,0 +1,26 @@
+<form> 
+    <h3>Backlog-Filter:</h3> 
+    <fieldset>
+      <ul>
+        <li> 
+          <label>
+            <input type="checkbox" name="Feature" [(ngModel)]="featureChecked" (change)="onCheckedChange()">
+            Feature
+          </label>
+        </li>
+        <li> 
+          <label>
+             <input type="checkbox" name="Refactoring" [(ngModel)]="refactoringChecked" (change)="onCheckedChange()">
+             Refactoring
+          </label>
+        </li>
+        <li>  
+          <label>
+            <input type="checkbox" name="Bug" [(ngModel)]="bugChecked" (change)="onCheckedChange()">
+            Bug
+          </label>
+        </li>
+      </ul> 
+    </fieldset> 
+  </form>
+  
