@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
 
   onFilterBarFilterChanged(event: any){
     console.log('Emitted event via onFilterBarFilterChanged' + event);
+    this.currentaskFilter = event;
   }
 
 }
