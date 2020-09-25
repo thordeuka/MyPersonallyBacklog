@@ -1,5 +1,5 @@
 <p>The Backlog works fine !!!</p>
-<app-filter-bar></app-filter-bar>
+<app-filter-bar (onFilterChanged)="onFilterBarFilterChanged($event)"></app-filter-bar>
 <app-backlog-task 
     *ngFor="let task of myTasks | taskKindFilter:currentaskFilter"
     [Task]="task">

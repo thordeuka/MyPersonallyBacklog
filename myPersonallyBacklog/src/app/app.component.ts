@@ -26,4 +26,8 @@ export class AppComponent implements OnInit {
     this.backlogtaskService.addTask({parentId: 1, title: "Title", description: "Descvrg", kind: BacklogTask.TaskKind.Feature});
   }
 
+  onFilterBarFilterChanged(event: any){
+    console.log('Emitted event via onFilterBarFilterChanged' + event);
+  }
+
 }
