@@ -9,9 +9,9 @@ export class BacklogTaskService{
     private nextId: number = 4;
     
     public myTasks: BacklogTask[] = [
-        new BacklogTask(1,null,"Erster Task","Die 1. Beschreibung",BacklogTask.TaskKind.Feature, BacklogTask.Status.Planned),
+        new BacklogTask(1,null,"Erster Task","Die 1. Beschreibung",BacklogTask.TaskKind.Bug, BacklogTask.Status.Planned),
         new BacklogTask(2,1,"Zweiter Task","Die 2. Beschreibung",BacklogTask.TaskKind.Refactoring, BacklogTask.Status.InProgress),
-        new BacklogTask(3,2,"Dritter Task","Die 4. Beschreibung",BacklogTask.TaskKind.Bug, BacklogTask.Status.Done)
+        new BacklogTask(3,1,"Dritter Task","Die 4. Beschreibung",BacklogTask.TaskKind.Bug, BacklogTask.Status.Done)
       ]    
     
     constructor(){}

@@ -20,6 +20,12 @@
             Bug
           </label>
         </li>
+        <li>  
+          <label>
+            <input type="checkbox" name="OnlyParents" [(ngModel)]="onlyParentsChecked" (change)="onOnlyParentsCheckedChange()">
+            nur Eltern anzeigen
+          </label>
+        </li>
       </ul> 
     </fieldset> 
   </form>

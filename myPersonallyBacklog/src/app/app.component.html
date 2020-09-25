@@ -1,7 +1,7 @@
 <p>The Backlog works fine !!!</p>
-<app-filter-bar (onFilterChanged)="onFilterBarFilterChanged($event)"></app-filter-bar>
+<app-filter-bar (onFilterChanged)="onFilterBarFilterChanged($event)" (onOnlyParentsChanged)="onFilterBarParentFilterChanged($event)"></app-filter-bar>
 <app-backlog-task 
-    *ngFor="let task of myTasks | taskKindFilter:currentaskFilter"
+    *ngFor="let task of myTasks | parentFilter:currentParentFilter | taskKindFilter:currentaskFilter"
     [Task]="task">
 </app-backlog-task>
 <button (click)="onAddTask()">Add</button>

@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   title = 'myPersonallyBacklog';
   public myTasks: BacklogTask[];
   public currentaskFilter: BacklogTask.TaskKind[] = [BacklogTask.TaskKind.Feature];
+  public currentParentFilter: boolean;
   
   constructor(private backlogtaskService: BacklogTaskService){}
   
@@ -27,8 +28,13 @@ export class AppComponent implements OnInit {
   }
 
   onFilterBarFilterChanged(event: any){
-    console.log('Emitted event via onFilterBarFilterChanged' + event);
+    console.log('Emitted event catched via onFilterBarFilterChanged' + event);
     this.currentaskFilter = event;
+  }
+
+  onFilterBarParentFilterChanged(event: any){
+    console.log('Emitted event catched via onFilterBarParentFilterChanged' + event);
+    this.currentParentFilter = event;
   }
 
 }
