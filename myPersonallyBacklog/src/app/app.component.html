@@ -4,5 +4,6 @@
     *ngFor="let task of myTasks | parentFilter:currentParentFilter | taskKindFilter:currentaskFilter"
     [TaskId]="task.id">
 </app-backlog-task>
+<hr>
 <button (click)="onAddTask()">Add</button>
 <app-task-edit></app-task-edit>

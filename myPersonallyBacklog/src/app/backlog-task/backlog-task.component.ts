@@ -19,11 +19,12 @@ export class BacklogTaskComponent implements OnInit {
   }
 
   onEditClick(){
-    console.log(this.backlogTask.title + " was clicked!")
+    console.log(this.backlogTask.title + ": edit was clicked!");
   }
 
   onDeleteClick(){
-
+    console.log(this.backlogTask.title + ": delete was clicked!");
+    this.backlogTaskService.removeTask(this.backlogTaskId);
   }
 
 }

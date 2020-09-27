@@ -38,5 +38,9 @@ export class BacklogTaskService{
 
     }
 
+    removeTask(id: number){
+        this.myTasks.splice(this.myTasks.findIndex(item => item.id === id), 1);
+    }
+
 
 }
