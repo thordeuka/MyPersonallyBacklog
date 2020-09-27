@@ -1,1 +1,44 @@
-<p>task-edit works!</p>
+<form (ngSubmit)="onSubmit()" #f="ngForm">
+    <div>
+        <label for="taskTitle">Title: </label>
+        <input 
+            type="text"
+            id="taskTitle"
+            name="taskTitle"
+            ngModel
+            required
+            >
+    </div>
+    <div>
+        <label for="taskDescription">Description: </label>
+        <textarea
+            id="taskDescription"
+            name="taskDescription"
+            rows="3"
+            ngModel
+            required>
+        </textarea>
+    </div>
+    <div>   
+        <label for="taskStatus">Status: </label>
+        <select 
+            id="taskStatus"
+            name="taskStatus"
+            ngModel
+            required>
+            <option value="New">New</option>
+            <option value="Postponed">Postponed</option>
+            <option value="Planned">Planned</option>
+            <option value="InProgress">InProgress</option>
+            <option value="Done">Done</option>
+        </select>
+    </div>
+    <div>
+        <button 
+            type="submit"
+            [disabled]="!f.valid"
+            >
+            Create
+        </button>
+    </div>
+</form>

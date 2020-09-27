@@ -1,4 +1,3 @@
-import { templateJitUrl } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { BacklogTask } from './backlogtask.model';
 
