@@ -1,3 +1,4 @@
+import { templateJitUrl } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { BacklogTask } from './backlogtask.model';
 
@@ -9,15 +10,24 @@ export class BacklogTaskService{
     private nextId: number = 4;
     
     public myTasks: BacklogTask[] = [
-        new BacklogTask(1,null,"Erster Task","Die 1. Beschreibung",BacklogTask.TaskKind.Bug, BacklogTask.Status.Planned),
-        new BacklogTask(2,1,"Zweiter Task","Die 2. Beschreibung",BacklogTask.TaskKind.Refactoring, BacklogTask.Status.InProgress),
-        new BacklogTask(3,1,"Dritter Task","Die 4. Beschreibung",BacklogTask.TaskKind.Bug, BacklogTask.Status.Done)
+        new BacklogTask(1, null, "Erster Task","Die 1. Beschreibung", BacklogTask.TaskKind.Bug, BacklogTask.Status.Planned),
+        new BacklogTask(2, 1, "Zweiter Task","Die 2. Beschreibung", BacklogTask.TaskKind.Refactoring, BacklogTask.Status.InProgress),
+        new BacklogTask(3, 1, "Dritter Task","Die 4. Beschreibung", BacklogTask.TaskKind.Bug, BacklogTask.Status.Done)
       ]    
     
     constructor(){}
 
     public getTasks(): BacklogTask[] {
         return this.myTasks;
+    }
+
+    public getTaskById(id: number): BacklogTask {
+        for(const item of this.myTasks){
+            if(item.id === id){
+            return item;
+            }
+        }
+        return null;             
     }
 
     addTask(newTask: {parentId: number, title: string, description: string, kind: BacklogTask.TaskKind}): void {

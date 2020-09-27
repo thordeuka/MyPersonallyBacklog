@@ -8,6 +8,7 @@ import { TaskKindFilterPipe } from './task-kind-filter.pipe';
 import { FilterBarComponent } from './filter-bar/filter-bar.component';
 import { FormsModule } from '@angular/forms';
 import { ParentFilterPipe } from './parent-filter.pipe';
+import { TaskEditComponent } from './task-edit/task-edit.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ParentFilterPipe } from './parent-filter.pipe';
     BacklogTaskComponent,
     TaskKindFilterPipe,
     FilterBarComponent,
-    ParentFilterPipe
+    ParentFilterPipe,
+    TaskEditComponent
   ],
   imports: [
     BrowserModule,

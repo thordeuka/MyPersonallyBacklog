@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BacklogTask } from './backlogtask.model';
+import { BacklogTaskService } from './backlogtask.service';
 
 @Component({
   selector: 'app-backlog-task',
@@ -8,15 +9,21 @@ import { BacklogTask } from './backlogtask.model';
 })
 export class BacklogTaskComponent implements OnInit {
 
-  @Input('Task') backlogTask: BacklogTask;
+  @Input('TaskId') backlogTaskId: number;
+  public backlogTask: BacklogTask;
   
-  constructor() { }
+  constructor(private backlogTaskService: BacklogTaskService) { }
 
   ngOnInit(): void {
+    this.backlogTask = this.backlogTaskService.getTaskById(this.backlogTaskId);
   }
 
   onEditClick(){
     console.log(this.backlogTask.title + " was clicked!")
+  }
+
+  onDeleteClick(){
+
   }
 
 }

@@ -2,6 +2,7 @@
 <app-filter-bar (onFilterChanged)="onFilterBarFilterChanged($event)" (onOnlyParentsChanged)="onFilterBarParentFilterChanged($event)"></app-filter-bar>
 <app-backlog-task 
     *ngFor="let task of myTasks | parentFilter:currentParentFilter | taskKindFilter:currentaskFilter"
-    [Task]="task">
+    [TaskId]="task.id">
 </app-backlog-task>
 <button (click)="onAddTask()">Add</button>
+<app-task-edit></app-task-edit>
