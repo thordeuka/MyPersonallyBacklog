@@ -1,9 +1,16 @@
-<p>The Backlog works fine !!!</p>
-<app-filter-bar (onFilterChanged)="onFilterBarFilterChanged($event)" (onOnlyParentsChanged)="onFilterBarParentFilterChanged($event)"></app-filter-bar>
-<app-backlog-task 
-    *ngFor="let task of myTasks | parentFilter:currentParentFilter | taskKindFilter:currentaskFilter"
-    [TaskId]="task.id">
-</app-backlog-task>
-<hr>
-<button (click)="onAddTask()">Add</button>
-<app-task-edit></app-task-edit>
+<div>
+    <button (click)="onAddTask()">Add new Task</button>
+    <a routerLink="../edit">added</a>
+</div>
+<div class="leftSide">
+    <app-filter-bar (onFilterChanged)="onFilterBarFilterChanged($event)" (onOnlyParentsChanged)="onFilterBarParentFilterChanged($event)"></app-filter-bar>
+    <app-backlog-task 
+        *ngFor="let task of myTasks | parentFilter:currentParentFilter | taskKindFilter:currentaskFilter"
+        [TaskId]="task.id">
+    </app-backlog-task>
+</div>
+<div>
+    <router-outlet></router-outlet>
+</div>
+
+

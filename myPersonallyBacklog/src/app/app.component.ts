@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {OnInit} from '@angular/core'
 import { BacklogTask } from './backlog-task/backlogtask.model';
 import { BacklogTaskService } from './backlog-task/backlogtask.service';
+import {ActivatedRoute, Router} from '@angular/router'
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
   public currentaskFilter: BacklogTask.TaskKind[] = [BacklogTask.TaskKind.Feature];
   public currentParentFilter: boolean;
   
-  constructor(private backlogtaskService: BacklogTaskService){}
+  constructor(private backlogtaskService: BacklogTaskService, private router:Router, private route:ActivatedRoute){}
   
   ngOnInit(): void {
     console.log("ngOnInit()");
@@ -24,7 +25,8 @@ export class AppComponent implements OnInit {
 
   onAddTask(){
     console.log("OnAddTask()");
-    this.backlogtaskService.addTask({parentId: 1, title: "Title", description: "Descvrg", kind: BacklogTask.TaskKind.Feature});
+    //this.backlogtaskService.addTask({parentId: 1, title: "Title", description: "Descvrg", kind: BacklogTask.TaskKind.Feature});
+    this.router.navigate(['newtask'], {relativeTo: this.route});
   }
 
   onFilterBarFilterChanged(event: any){

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm} from '@angular/forms'
+import { ActivatedRoute, Params } from '@angular/router';
 import { BacklogTask } from '../backlog-task/backlogtask.model';
 import { BacklogTaskService } from '../backlog-task/backlogtask.service';
 
@@ -10,10 +11,24 @@ import { BacklogTaskService } from '../backlog-task/backlogtask.service';
 })
 export class TaskEditComponent implements OnInit {
   @ViewChild('f', {static:true}) signupForm: NgForm;
+  private taskId: number;
 
-  constructor(private backlogTaskService: BacklogTaskService) { }
+  constructor(private backlogTaskService: BacklogTaskService, private route: ActivatedRoute) { 
+    this.route.params.subscribe( 
+      
+      (params:Params) => {
+        console.log(params)
+        this.taskId = params['id'];
+        this.onEditViewLoad();
+      }
+      );
+  }
 
   ngOnInit(): void {
+  }
+
+  onEditViewLoad(){
+    console.log("Lade Editmode mit Id: " + this.taskId);
   }
 
   onSubmit(){

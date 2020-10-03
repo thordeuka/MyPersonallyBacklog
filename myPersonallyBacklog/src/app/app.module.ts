@@ -9,6 +9,7 @@ import { FilterBarComponent } from './filter-bar/filter-bar.component';
 import { FormsModule } from '@angular/forms';
 import { ParentFilterPipe } from './parent-filter.pipe';
 import { TaskEditComponent } from './task-edit/task-edit.component';
+import { Error404Component } from './error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TaskEditComponent } from './task-edit/task-edit.component';
     TaskKindFilterPipe,
     FilterBarComponent,
     ParentFilterPipe,
-    TaskEditComponent
+    TaskEditComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
