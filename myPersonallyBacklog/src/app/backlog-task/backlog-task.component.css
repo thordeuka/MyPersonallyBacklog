@@ -4,16 +4,26 @@
 
 .editbutton {
     background-color: skyblue;
-    border-radius: 10px;
+    border-radius: 15%;
     color: seashell;
     border-color: skyblue;
-    border-width: 10px;
+    border-width: 2px;
+    margin-right: 10px;
 }
 
 .deletebutton {
     background-color: rgb(138, 23, 28);
-    border-radius: 10px;
+    border-radius: 15%;
     color: seashell;
     border-color: rgb(138, 23, 28);
-    border-width: 10px;
+    border-width: 2px;
+    margin-right: 10px;
+}
+
+.addworkbutton {
+    background-color: rgb(25, 23, 138);
+    border-radius: 15%;
+    color: seashell;
+    border-color: rgb(23, 77, 138);
+    border-width: 2px;
 }

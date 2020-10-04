@@ -26,6 +26,7 @@ export namespace BacklogTask{
         Postponed,
         Planned,
         InProgress,
-        Done
+        Done,
+        TestCovered
     }
 }

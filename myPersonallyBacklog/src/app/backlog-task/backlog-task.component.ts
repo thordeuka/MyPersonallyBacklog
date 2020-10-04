@@ -29,4 +29,8 @@ export class BacklogTaskComponent implements OnInit {
     this.backlogTaskService.removeTask(this.backlogTaskId);
   }
 
+  onAddWorkClick(){
+    console.log(this.backlogTask.title + ": add work was clicked!");
+  }
+
 }

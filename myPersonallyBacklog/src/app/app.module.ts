@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { ParentFilterPipe } from './parent-filter.pipe';
 import { TaskEditComponent } from './task-edit/task-edit.component';
 import { Error404Component } from './error404/error404.component';
+import { BacklogWorkComponent } from './backlog-work/backlog-work.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { Error404Component } from './error404/error404.component';
     FilterBarComponent,
     ParentFilterPipe,
     TaskEditComponent,
-    Error404Component
+    Error404Component,
+    BacklogWorkComponent
   ],
   imports: [
     BrowserModule,
