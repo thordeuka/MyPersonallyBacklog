@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm} from '@angular/forms'
 import { ActivatedRoute, Params } from '@angular/router';
-import { BacklogTask } from '../backlog-task/backlogtask.model';
-import { BacklogTaskService } from '../backlog-task/backlogtask.service';
+import { BacklogTask} from '../backlog-task/backlogtask.model'
+import {BacklogTaskService} from '../backlog-task/backlogtask.service'
 
 @Component({
   selector: 'app-task-edit',
@@ -44,7 +44,7 @@ export class TaskEditComponent implements OnInit {
         parentId: null,
         title: this.signupForm.value.taskTitle,
         description: this.signupForm.value.taskDescription,
-        kind: BacklogTask.TaskKind.Refactoring
+        kind: BacklogTask.Kind.Implementation
       }
     );
   }

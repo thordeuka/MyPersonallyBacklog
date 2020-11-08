@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { BacklogTask } from '../backlog-task/backlogtask.model';
+import { BacklogTopic} from '../backlog-topic/backlogtopic.model';
 
 @Component({
   selector: 'app-filter-bar',
@@ -13,7 +13,7 @@ export class FilterBarComponent implements OnInit {
   public bugChecked: boolean = true;
   public onlyParentsChecked: boolean = false;
 
-  @Output('onFilterChanged') filterChangedEvent : EventEmitter<BacklogTask.TaskKind[]> = new EventEmitter<BacklogTask.TaskKind[]>();
+  @Output('onFilterChanged') filterChangedEvent : EventEmitter<BacklogTopic.Kind[]> = new EventEmitter<BacklogTopic.Kind[]>();
   @Output('onOnlyParentsChanged') filterParentsChangedEvent : EventEmitter<boolean> = new EventEmitter<boolean>();
   
   constructor() { }
@@ -26,10 +26,10 @@ export class FilterBarComponent implements OnInit {
   onCheckedChange(){
     console.log("checkedChanged: " + this.featureChecked + " " + this.refactoringChecked + " " + this.bugChecked);
     
-    let checkedstatus: BacklogTask.TaskKind[] = [];
-    if(this.featureChecked)checkedstatus.push(BacklogTask.TaskKind.Feature);
-    if(this.refactoringChecked)checkedstatus.push(BacklogTask.TaskKind.Refactoring);
-    if(this.bugChecked)checkedstatus.push(BacklogTask.TaskKind.Bug);
+    let checkedstatus: BacklogTopic.Kind[] = [];
+    if(this.featureChecked)checkedstatus.push(BacklogTopic.Kind.Feature);
+    if(this.refactoringChecked)checkedstatus.push(BacklogTopic.Kind.Refactoring);
+    if(this.bugChecked)checkedstatus.push(BacklogTopic.Kind.Bug);
     
     this.filterChangedEvent.emit(checkedstatus);
   }

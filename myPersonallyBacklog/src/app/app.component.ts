@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {OnInit} from '@angular/core'
-import { BacklogTask } from './backlog-task/backlogtask.model';
-import { BacklogTaskService } from './backlog-task/backlogtask.service';
+import { BacklogTask } from './backlog-task/backlogtask.model'
+import { BacklogTopic } from './backlog-topic/backlogtopic.model'
+import { BacklogTaskService } from './backlog-task/backlogtask.service'
 import {ActivatedRoute, Router} from '@angular/router'
 
 @Component({
@@ -12,11 +13,11 @@ import {ActivatedRoute, Router} from '@angular/router'
 export class AppComponent implements OnInit {
   
   title = 'myPersonallyBacklog';
-  public myTasks: BacklogTask[];
-  public currentaskFilter: BacklogTask.TaskKind[] = [BacklogTask.TaskKind.Feature];
+  public myTopics: BacklogTopic[];
+  public currentTopicFilter: BacklogTopic.Kind[] = [BacklogTopic.Kind.Feature];
   public currentParentFilter: boolean;
   
-  constructor(private backlogtaskService: BacklogTaskService, private router:Router, private route:ActivatedRoute){}
+  constructor(private backlogtaskService: BacklogTaskService, private router:Router, private route:ActivatedRoute){} // HIER  weiter zu topics ändern anstatt tasks
   
   ngOnInit(): void {
     console.log("ngOnInit()");

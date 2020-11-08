@@ -11,6 +11,7 @@ import { ParentFilterPipe } from './parent-filter.pipe';
 import { TaskEditComponent } from './task-edit/task-edit.component';
 import { Error404Component } from './error404/error404.component';
 import { BacklogWorkComponent } from './backlog-work/backlog-work.component';
+import { BacklogTopicComponent } from './backlog-topic/backlog-topic.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { BacklogWorkComponent } from './backlog-work/backlog-work.component';
     ParentFilterPipe,
     TaskEditComponent,
     Error404Component,
-    BacklogWorkComponent
+    BacklogWorkComponent,
+    BacklogTopicComponent
   ],
   imports: [
     BrowserModule,

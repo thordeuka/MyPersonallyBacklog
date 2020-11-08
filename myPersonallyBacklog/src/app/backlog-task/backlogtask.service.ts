@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BacklogTask } from './backlogtask.model';
+import { BacklogTask} from './backlogtask.model';
 
 @Injectable({
     providedIn: 'root',
@@ -9,9 +9,9 @@ export class BacklogTaskService{
     private nextId: number = 4;
     
     public myTasks: BacklogTask[] = [
-        new BacklogTask(1, null, "Erster Task","Die 1. Beschreibung", BacklogTask.TaskKind.Bug, BacklogTask.Status.Planned),
-        new BacklogTask(2, 1, "Zweiter Task","Die 2. Beschreibung", BacklogTask.TaskKind.Refactoring, BacklogTask.Status.InProgress),
-        new BacklogTask(3, 1, "Dritter Task","Die 4. Beschreibung", BacklogTask.TaskKind.Bug, BacklogTask.Status.Done)
+        new BacklogTask(1, null, "Erster Task","Die 1. Beschreibung", BacklogTask.Kind.Documentation, BacklogTask.Status.Planned),
+        new BacklogTask(2, 1, "Zweiter Task","Die 2. Beschreibung", BacklogTask.Kind.Implementation, BacklogTask.Status.InProgress),
+        new BacklogTask(3, 1, "Dritter Task","Die 4. Beschreibung", BacklogTask.Kind.Testing, BacklogTask.Status.Done)
       ]    
     
     constructor(){}
@@ -29,7 +29,7 @@ export class BacklogTaskService{
         return null;             
     }
 
-    addTask(newTask: {parentId: number, title: string, description: string, kind: BacklogTask.TaskKind}): void {
+    addTask(newTask: {parentId: number, title: string, description: string, kind: BacklogTask.Kind}): void {
 
         let theNewTask = new BacklogTask(this.nextId, newTask.parentId, newTask.title, newTask.description, newTask.kind, BacklogTask.Status.New);
         this.myTasks.push(theNewTask);
