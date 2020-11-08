@@ -5,7 +5,7 @@ export class BacklogTopic{
         public id: number,
         public title: string,
         public description: string,
-        public topicKind: BacklogTopic.Kind,
+        public kind: BacklogTopic.Kind,
         public status: BacklogTopic.Status
 
     ){}

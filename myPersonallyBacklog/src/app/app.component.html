@@ -1,13 +1,13 @@
 <div>
-    <button (click)="onAddTask()">Add new Task</button>
+    <button (click)="onAddTopic()">Add new Task</button>
     <a routerLink="../edit">added</a>
 </div>
 <div class="leftSide">
     <app-filter-bar (onFilterChanged)="onFilterBarFilterChanged($event)" (onOnlyParentsChanged)="onFilterBarParentFilterChanged($event)"></app-filter-bar>
-    <app-backlog-task 
-        *ngFor="let task of myTasks | parentFilter:currentParentFilter | taskKindFilter:currentaskFilter"
-        [TaskId]="task.id">
-    </app-backlog-task>
+    <app-backlog-topic
+        *ngFor="let topic of myTopics | topicKindFilter: currentTopicFilter"
+        [TopicId]="topic.id">
+    </app-backlog-topic>
 </div>
 <div>
     <router-outlet></router-outlet>

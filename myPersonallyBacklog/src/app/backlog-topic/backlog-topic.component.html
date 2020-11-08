@@ -1,1 +1,16 @@
-<p>backlog-topic works!</p>
+<hr>
+<p class="title">#{{ backlogTopic.id }} - Title: {{ backlogTopic.title }}</p>
+<div [ngSwitch]=backlogTopic.kind>
+    <p *ngSwitchCase="0">Kind: {{ "FEATURE" }}</p>
+    <p *ngSwitchCase="1">Kind: {{ "Refactoring" }}</p>
+    <p *ngSwitchCase="2">Kind: {{ "BUG" }}</p>
+</div>
+Description: {{ backlogTopic.description }}
+<div [ngSwitch]=backlogTopic.status>
+    <p *ngSwitchCase="0">Status: {{ "Open" }}</p>
+    <p *ngSwitchCase="1">Status: {{ "In Progress" }}</p>
+    <p *ngSwitchCase="2">Status: {{ "Done" }}</p>
+</div>
+<button class="editbutton" (click)="onEditClick()">Edit</button>
+<button class="deletebutton" (click)="onDeleteClick()">Delete</button>
+<button class="addworkbutton" (click)="onAddTaskClick()">Add Task</button>
