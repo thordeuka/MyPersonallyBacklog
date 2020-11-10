@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { BacklogTopic } from './backlogtopic.model';
 import { BacklogTopicService } from './backlogtopic.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BacklogTask } from '../backlog-task/backlogtask.model';
+import { BacklogTaskService } from '../backlog-task/backlogtask.service';
 
 @Component({
   selector: 'app-backlog-topic',
@@ -12,11 +14,13 @@ export class BacklogTopicComponent implements OnInit {
 
   @Input('TopicId') backlogTopicId: number;
   public backlogTopic: BacklogTopic;
+  public backlogTasks: BacklogTask [];
   
-  constructor(private backlogTopicService: BacklogTopicService, private router:Router, private route:ActivatedRoute) { }
+  constructor(private backlogTopicService: BacklogTopicService, private backlogTaskService: BacklogTaskService, private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.backlogTopic = this.backlogTopicService.getTopicById(this.backlogTopicId);
+    this.backlogTasks = this.backlogTaskService.getAllTasksByParentId(this.backlogTopicId);
   }
 
   onEditClick(){

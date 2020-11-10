@@ -27,3 +27,7 @@
     border-color: rgb(23, 77, 138);
     border-width: 2px;
 }
+
+.task {
+    margin-left: 20px;
+}

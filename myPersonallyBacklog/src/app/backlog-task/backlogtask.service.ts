@@ -9,7 +9,7 @@ export class BacklogTaskService{
     private nextId: number = 4;
     
     public myTasks: BacklogTask[] = [
-        new BacklogTask(1, null, "Erster Task","Die 1. Beschreibung", BacklogTask.Kind.Documentation, BacklogTask.Status.Planned),
+        new BacklogTask(1, 1, "Erster Task","Die 1. Beschreibung", BacklogTask.Kind.Documentation, BacklogTask.Status.Planned),
         new BacklogTask(2, 1, "Zweiter Task","Die 2. Beschreibung", BacklogTask.Kind.Implementation, BacklogTask.Status.InProgress),
         new BacklogTask(3, 1, "Dritter Task","Die 4. Beschreibung", BacklogTask.Kind.Testing, BacklogTask.Status.Done)
       ]    
@@ -27,6 +27,19 @@ export class BacklogTaskService{
             }
         }
         return null;             
+    }
+
+    public getAllTasksByParentId(id: number) : BacklogTask[]{
+        
+        let theTasks : BacklogTask[] = [];
+        for(let i=0;i<this.myTasks.length; i++)
+        {
+            if(this.myTasks[i].parent === id)
+            {
+                theTasks.push(this.myTasks[i]);
+            }
+        }     
+        return theTasks;
     }
 
     addTask(newTask: {parentId: number, title: string, description: string, kind: BacklogTask.Kind}): void {
