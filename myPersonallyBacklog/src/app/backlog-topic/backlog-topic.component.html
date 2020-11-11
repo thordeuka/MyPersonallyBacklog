@@ -15,7 +15,7 @@ Description: {{ backlogTopic.description }}
 <button class="deletebutton" (click)="onDeleteClick()">Delete</button>
 <button class="addworkbutton" (click)="onAddTaskClick()">Add Task</button>
 <hr>
-<div class="task">
+<div *ngIf="!showOnlyTopics" class="task">
     <app-backlog-task
     *ngFor="let task of backlogTasks"
     [TaskId]="task.id">

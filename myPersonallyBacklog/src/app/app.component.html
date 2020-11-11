@@ -3,10 +3,10 @@
     <a routerLink="../edit">added</a>
 </div>
 <div class="leftSide">
-    <app-filter-bar (onFilterChanged)="onFilterBarFilterChanged($event)" (onOnlyParentsChanged)="onFilterBarParentFilterChanged($event)"></app-filter-bar>
+    <app-filter-bar (onFilterChanged)="onFilterBarFilterChanged($event)" (onOnlyTopicsChanged)="onFilterBarTopicFilterChanged($event)"></app-filter-bar>
     <app-backlog-topic
-        *ngFor="let topic of myTopics | topicKindFilter: currentTopicFilter"
-        [TopicId]="topic.id">
+        *ngFor="let topic of myTopics | topicKindFilter: currentTopicKindFilter"
+        [TopicId]="topic.id" [ShowOnlyTopics]="currentOnlyTopicsFilter">
     </app-backlog-topic>
 </div>
 <div>

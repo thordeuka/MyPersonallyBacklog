@@ -13,6 +13,7 @@ import { BacklogTaskService } from '../backlog-task/backlogtask.service';
 export class BacklogTopicComponent implements OnInit {
 
   @Input('TopicId') backlogTopicId: number;
+  @Input('ShowOnlyTopics') showOnlyTopics: boolean;
   public backlogTopic: BacklogTopic;
   public backlogTasks: BacklogTask [];
   

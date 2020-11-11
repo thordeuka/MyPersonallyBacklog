@@ -10,8 +10,8 @@ export class BacklogTaskService{
     
     public myTasks: BacklogTask[] = [
         new BacklogTask(1, 1, "Erster Task","Die 1. Beschreibung", BacklogTask.Kind.Documentation, BacklogTask.Status.Planned),
-        new BacklogTask(2, 1, "Zweiter Task","Die 2. Beschreibung", BacklogTask.Kind.Implementation, BacklogTask.Status.InProgress),
-        new BacklogTask(3, 1, "Dritter Task","Die 4. Beschreibung", BacklogTask.Kind.Testing, BacklogTask.Status.Done)
+        new BacklogTask(2, 2, "Zweiter Task","Die 2. Beschreibung", BacklogTask.Kind.Implementation, BacklogTask.Status.InProgress),
+        new BacklogTask(3, 2, "Dritter Task","Die 4. Beschreibung", BacklogTask.Kind.Testing, BacklogTask.Status.Done)
       ]    
     
     constructor(){}

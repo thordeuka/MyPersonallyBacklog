@@ -15,8 +15,8 @@ export class AppComponent implements OnInit {
   
   title = 'myPersonallyBacklog';
   public myTopics: BacklogTopic[];
-  public currentTopicFilter: BacklogTopic.Kind[] = [BacklogTopic.Kind.Feature];
-  public currentParentFilter: boolean;
+  public currentTopicKindFilter: BacklogTopic.Kind[] = [BacklogTopic.Kind.Feature];
+  public currentOnlyTopicsFilter: boolean;
   
   constructor(private backlogtaskService: BacklogTaskService, private backlogtopicService: BacklogTopicService, private router:Router, private route:ActivatedRoute){} // HIER  weiter zu topics ändern anstatt tasks
   
@@ -39,12 +39,13 @@ export class AppComponent implements OnInit {
 
   onFilterBarFilterChanged(event: any){
     console.log('Emitted event catched via onFilterBarFilterChanged' + event);
-    this.currentTopicFilter = event;
+    this.currentTopicKindFilter = event;
   }
 
-  onFilterBarParentFilterChanged(event: any){
+  onFilterBarTopicFilterChanged(event: any){
     console.log('Emitted event catched via onFilterBarParentFilterChanged' + event);
-    this.currentParentFilter = event;
+    this.currentOnlyTopicsFilter = event;
+    console.log("filter changed");
   }
 
 }

@@ -11,16 +11,16 @@ export class FilterBarComponent implements OnInit {
   public featureChecked: boolean = true;
   public refactoringChecked: boolean = true;
   public bugChecked: boolean = true;
-  public onlyParentsChecked: boolean = false;
+  public onlyTopicsChecked: boolean = false;
 
   @Output('onFilterChanged') filterChangedEvent : EventEmitter<BacklogTopic.Kind[]> = new EventEmitter<BacklogTopic.Kind[]>();
-  @Output('onOnlyParentsChanged') filterParentsChangedEvent : EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output('onOnlyTopicsChanged') filterParentsChangedEvent : EventEmitter<boolean> = new EventEmitter<boolean>();
   
   constructor() { }
 
   ngOnInit(): void {
     this.onCheckedChange();
-    this.onOnlyParentsCheckedChange();
+    this.onOnlyTopicsCheckedChange();
   }
 
   onCheckedChange(){
@@ -34,8 +34,8 @@ export class FilterBarComponent implements OnInit {
     this.filterChangedEvent.emit(checkedstatus);
   }
 
-  onOnlyParentsCheckedChange(){
-    this.filterParentsChangedEvent.emit(this.onlyParentsChecked);
+  onOnlyTopicsCheckedChange(){
+    this.filterParentsChangedEvent.emit(this.onlyTopicsChecked);
   }
 
 }
