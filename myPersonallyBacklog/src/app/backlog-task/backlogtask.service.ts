@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { BacklogTask} from './backlogtask.model';
 
 @Injectable({
@@ -6,6 +7,8 @@ import { BacklogTask} from './backlogtask.model';
 })
 export class BacklogTaskService
 {
+    tasksChangedSubject = new Subject<BacklogTask[]>();
+    
     private nextId: number = 4;
     
     public myTasks: BacklogTask[] = [
@@ -50,13 +53,14 @@ export class BacklogTaskService
         let theNewTask = new BacklogTask(this.nextId, newTask.parentId, newTask.title, newTask.description, newTask.kind, BacklogTask.Status.New);
         this.myTasks.push(theNewTask);
         this.nextId++;
+        this.tasksChangedSubject.next(this.myTasks.slice());
 
     }
 
     // Only for testing, can be removed when Task Adding is implemented ///////////////////////
     addTestTask(): void 
     {   
-        let parentId: number = this.getRandomInt(3);
+        let parentId: number = 1 + this.getRandomInt(3);
         let taskKind: number = this.getRandomInt(3);
         
         let theNewTask = new BacklogTask(
@@ -70,6 +74,7 @@ export class BacklogTaskService
             this.myTasks.push(theNewTask);
         this.nextId++;
         console.log("Added TestTask: " + JSON.stringify(theNewTask));
+        this.tasksChangedSubject.next(this.myTasks.slice());
     }
     
     getRandomInt(max: number)
@@ -81,6 +86,7 @@ export class BacklogTaskService
     removeTask(id: number)
     {
         this.myTasks.splice(this.myTasks.findIndex(item => item.id === id), 1);
+        this.tasksChangedSubject.next(this.myTasks.slice());
     }
 
 
