@@ -25,11 +25,12 @@ export class AppComponent implements OnInit {
     this.myTopics = this.backlogtopicService.getTopics();
   }
 
-  // onAddTask(){
-  //   console.log("OnAddTask()");
-  //   //this.backlogtaskService.addTask({parentId: 1, title: "Title", description: "Descvrg", kind: BacklogTask.TaskKind.Feature});
-  //   this.router.navigate(['newtask'], {relativeTo: this.route});
-  // }
+  // Only for testing, can be removed when Task Adding is implemented ///////////////////////
+  onAddTestTask(){
+    console.log("OnAddTestTask()");
+    this.backlogtaskService.addTestTask();
+    //this.router.navigate(['newtask'], {relativeTo: this.route});
+  }
 
   onAddTopic(){
     console.log("OnAddTopic()");
