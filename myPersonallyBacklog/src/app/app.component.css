@@ -1,5 +1,5 @@
 .leftSide{
-    float: left;
+    background-color: rgb(236, 236, 236);
     margin-top: 20px;
     margin-right: 20px;
     min-width: 30%;
@@ -7,7 +7,10 @@
 }
 
 .rightSide{
+    float: right;
+    background-color: rgb(231, 219, 219);
     margin-top: 20px;
+    margin-left: 20px;
     min-width: 30%;
     width: 50%;
 }
