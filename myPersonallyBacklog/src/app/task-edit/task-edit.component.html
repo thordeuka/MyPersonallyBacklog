@@ -5,7 +5,7 @@
             type="text"
             id="taskTitle"
             name="taskTitle"
-            ngModel
+            [(ngModel)] = "currentTask.title"
             required
             >
     </div>
@@ -15,16 +15,28 @@
             id="taskDescription"
             name="taskDescription"
             rows="3"
-            ngModel
+            [(ngModel)] = "currentTask.description"
             required>
         </textarea>
+    </div>
+    <div>   
+        <label for="taskKind">Art: </label>
+        <select 
+            id="taskKind"
+            name="taskKind"
+            [(ngModel)] = "currenTaskStringKind"
+            required>
+            <option value="Implementation">Implementation</option>
+            <option value="Testing">Testing</option>
+            <option value="Documentation">Dokumentation</option>
+        </select>
     </div>
     <div>   
         <label for="taskStatus">Status: </label>
         <select 
             id="taskStatus"
             name="taskStatus"
-            ngModel
+            [(ngModel)] = "currenTaskStringStatus"
             required>
             <option value="New">New</option>
             <option value="Postponed">Postponed</option>
@@ -39,7 +51,7 @@
             type="submit"
             [disabled]="!f.valid"
             >
-            Create
+            {{ submitCaption }}
         </button>
     </div>
 </form>
