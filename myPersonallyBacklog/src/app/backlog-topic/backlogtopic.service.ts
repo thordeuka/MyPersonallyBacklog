@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { GlobalIdentifierService } from '../global-identifier.service';
 import { BacklogTopic} from './backlogtopic.model';
 
 @Injectable({
@@ -7,17 +8,17 @@ import { BacklogTopic} from './backlogtopic.model';
 })
 export class BacklogTopicService{
 
-    topicChangedSubject = new Subject<BacklogTopic[]>();
-
-    private nextId: number = 4;
+    topicChangedSubject = new Subject<BacklogTopic[]>();   
+    public myTopics: BacklogTopic[] = [];   
     
-    public myTopics: BacklogTopic[] = [
-        new BacklogTopic(1, "Erstes Topic","Die 1. Beschreibung", BacklogTopic.Kind.Feature, BacklogTopic.Status.Open),
-        new BacklogTopic(2, "Zweites Topic","Die 2. Beschreibung", BacklogTopic.Kind.Refactoring, BacklogTopic.Status.Open),
-        new BacklogTopic(3, "Drittes Topic","Die 4. Beschreibung", BacklogTopic.Kind.Bug, BacklogTopic.Status.Open)
-      ]    
-    
-    constructor(){}
+    constructor(private globalIdentifierService: GlobalIdentifierService)
+    {
+        // this.myTopics = [
+        //     new BacklogTopic(this.globalIdentifierService.fetchNextId(), "Erstes Topic","Die 1. Beschreibung", BacklogTopic.Kind.Feature, BacklogTopic.Status.Open),
+        //     new BacklogTopic(this.globalIdentifierService.fetchNextId(), "Zweites Topic","Die 2. Beschreibung", BacklogTopic.Kind.Refactoring, BacklogTopic.Status.Open),
+        //     new BacklogTopic(this.globalIdentifierService.fetchNextId(), "Drittes Topic","Die 4. Beschreibung", BacklogTopic.Kind.Bug, BacklogTopic.Status.Open)
+        //   ]  
+    }
 
     public getTopics(): BacklogTopic[] {
         return this.myTopics;
@@ -32,12 +33,13 @@ export class BacklogTopicService{
         return null;             
     }
 
-    addTopic(newTopic: {title: string, description: string, kind: BacklogTopic.Kind}): void {
+    addTopic(newTopic: {title: string, description: string, kind: BacklogTopic.Kind}): number {
 
-        let theNewTopic = new BacklogTopic(this.nextId, newTopic.title, newTopic.description, newTopic.kind, BacklogTopic.Status.Open);
+        let topicId = this.globalIdentifierService.fetchNextId();
+        let theNewTopic = new BacklogTopic(topicId, newTopic.title, newTopic.description, newTopic.kind, BacklogTopic.Status.Open);
         this.myTopics.push(theNewTopic);
-        this.nextId++;
         this.topicChangedSubject.next(this.myTopics.slice());
+        return topicId;
 
     }
 
@@ -48,14 +50,13 @@ export class BacklogTopicService{
         let topicKind: number = this.getRandomInt(3);
         
         let theNewTopic = new BacklogTopic(
-            this.nextId, 
+            this.globalIdentifierService.fetchNextId(), 
             "Test Topic", 
             "Description for this topic", 
             topicKind,
             topicStatus);
         
         this.myTopics.push(theNewTopic);
-        this.nextId++;
         console.log("Added TestTopic: " + JSON.stringify(theNewTopic));
         this.topicChangedSubject.next(this.myTopics.slice());
     }

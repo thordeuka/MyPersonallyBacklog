@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { GlobalIdentifierService } from '../global-identifier.service';
 import { BacklogTask} from './backlogtask.model';
 
 @Injectable({
@@ -8,17 +9,16 @@ import { BacklogTask} from './backlogtask.model';
 export class BacklogTaskService
 {
     tasksChangedSubject = new Subject<BacklogTask[]>();
+    public myTasks: BacklogTask[] = [];
     
-    private nextId: number = 4;
-    
-    public myTasks: BacklogTask[] = [
-        new BacklogTask(1, 1, "Erster Task","Die 1. Beschreibung", BacklogTask.Kind.Documentation, BacklogTask.Status.Planned),
-        new BacklogTask(2, 2, "Zweiter Task","Die 2. Beschreibung", BacklogTask.Kind.Implementation, BacklogTask.Status.InProgress),
-        new BacklogTask(3, 2, "Dritter Task","Die 4. Beschreibung", BacklogTask.Kind.Testing, BacklogTask.Status.Done)
-      ]    
-    
-    constructor()
-    {}
+    constructor(private globalIdentifierService: GlobalIdentifierService)
+    {
+        // this.myTasks = [
+        //     new BacklogTask(this.globalIdentifierService.fetchNextId(), 1, "Erster Task","Die 1. Beschreibung", BacklogTask.Kind.Documentation, BacklogTask.Status.Planned),
+        //     new BacklogTask(this.globalIdentifierService.fetchNextId(), 2, "Zweiter Task","Die 2. Beschreibung", BacklogTask.Kind.Implementation, BacklogTask.Status.InProgress),
+        //     new BacklogTask(this.globalIdentifierService.fetchNextId(), 2, "Dritter Task","Die 4. Beschreibung", BacklogTask.Kind.Testing, BacklogTask.Status.Done)
+        //   ]    
+    }
 
     public getTasks(): BacklogTask[]
     {
@@ -48,12 +48,13 @@ export class BacklogTaskService
         return theTasks;
     }
 
-    addTask(newTask: {parentId: number, title: string, description: string, kind: BacklogTask.Kind}): void
+    addTask(newTask: {parentId: number, title: string, description: string, kind: BacklogTask.Kind}): number
     {
-        let theNewTask = new BacklogTask(this.nextId, newTask.parentId, newTask.title, newTask.description, newTask.kind, BacklogTask.Status.New);
+        let taskId = this.globalIdentifierService.fetchNextId();
+        let theNewTask = new BacklogTask(taskId, newTask.parentId, newTask.title, newTask.description, newTask.kind, BacklogTask.Status.New);
         this.myTasks.push(theNewTask);
-        this.nextId++;
         this.tasksChangedSubject.next(this.myTasks.slice());
+        return taskId;
 
     }
 
@@ -64,7 +65,7 @@ export class BacklogTaskService
         let taskKind: number = this.getRandomInt(3);
         
         let theNewTask = new BacklogTask(
-            this.nextId, 
+            this.globalIdentifierService.fetchNextId(), 
             parentId, 
             "Test Task with parent " + parentId, 
             "Description for this task of parent " + parentId, 
@@ -72,7 +73,6 @@ export class BacklogTaskService
             BacklogTask.Status.New);
         
             this.myTasks.push(theNewTask);
-        this.nextId++;
         console.log("Added TestTask: " + JSON.stringify(theNewTask));
         this.tasksChangedSubject.next(this.myTasks.slice());
     }
