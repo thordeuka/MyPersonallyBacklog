@@ -13,10 +13,10 @@ export class TaskEditComponent implements OnInit {
   @ViewChild('f', {static:true}) signupForm: NgForm;
   
   private taskId: number;
-  private currentTask: BacklogTask;
-  private currenTaskStringStatus;
-  private currenTaskStringKind;
-  private submitCaption: string;
+  public currentTask: BacklogTask;
+  public currenTaskStringStatus;
+  public currenTaskStringKind;
+  public submitCaption: string;
 
   constructor(private backlogTaskService: BacklogTaskService, private route: ActivatedRoute) { 
     

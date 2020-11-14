@@ -43,7 +43,7 @@
             <option value="Planned">Planned</option>
             <option value="InProgress">InProgress</option>
             <option value="Done">Done</option>
-            <option value="TestCovered">TestCovered</option>
+            <option *ngIf="currenTaskStringKind==='Implementation'" value="TestCovered">TestCovered</option>
         </select>
     </div>
     <div>
