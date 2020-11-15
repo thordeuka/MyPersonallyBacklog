@@ -1,6 +1,7 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
 import { NgForm} from '@angular/forms'
 import { ActivatedRoute, Params } from '@angular/router';
+import { threadId } from 'worker_threads';
 import { BacklogTask} from '../backlog-task/backlogtask.model'
 import {BacklogTaskService} from '../backlog-task/backlogtask.service'
 
@@ -54,16 +55,21 @@ export class TaskEditComponent implements OnInit {
     //let newTask: {parentId: number, title: string, description: string, kind: BacklogTask.TaskKind} = {
     //  parentId: null,
     //}
-    
-     
-    this.backlogTaskService.addTask(
-      {
-        parentId: null,
-        title: this.signupForm.value.taskTitle,
-        description: this.signupForm.value.taskDescription,
-        kind: BacklogTask.Kind.Implementation
-      }
-    );
+    if(this.currentTask.id>0)
+    {
+      this.backlogTaskService.updateTask(this.currentTask.id, {estimation: 9999999999}); // TODO: Hier die vernünftigen Erte einsetzen
+    }
+    else
+    {
+      this.backlogTaskService.addTask(
+        {
+          parentId: null,
+          title: this.signupForm.value.taskTitle,
+          description: this.signupForm.value.taskDescription,
+          estimation: this.signupForm.value.estimation,
+          kind: BacklogTask.Kind.Implementation
+        }
+      );
+    }
   }
-
 }

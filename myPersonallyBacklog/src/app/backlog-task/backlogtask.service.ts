@@ -43,16 +43,25 @@ export class BacklogTaskService
         return theTasks;
     }
 
-    addTask(newTask: {parentId: number, title: string, description: string, kind: BacklogTask.Kind}): number
+    addTask(newTask: {parentId: number, title: string, description: string, estimation: number, kind: BacklogTask.Kind}): number
     {
         let taskId = this.globalIdentifierService.fetchNextId();
-        let theNewTask = new BacklogTask(taskId, newTask.parentId, newTask.title, newTask.description, newTask.kind, BacklogTask.Status.New);
+        let theNewTask = new BacklogTask(taskId, newTask.parentId, newTask.title, newTask.description, newTask.estimation, newTask.kind, BacklogTask.Status.New);
         this.myTasks.push(theNewTask);
         this.tasksChangedSubject.next(this.myTasks.slice());
         return taskId;
 
     }
 
+    updateTask(theId: number, theKeyValues: any)
+    {
+        let theTask = this.getTaskById(theId);
+        for (let key in theKeyValues)
+        {
+            theTask[key] = theKeyValues[key];
+        }
+        
+    }
     // Only for testing, can be removed when Task Adding is implemented ///////////////////////
     addTestTask(): void 
     {   
@@ -63,7 +72,8 @@ export class BacklogTaskService
             this.globalIdentifierService.fetchNextId(), 
             parentId, 
             "Test Task with parent " + parentId, 
-            "Description for this task of parent " + parentId, 
+            "Description for this task of parent " + parentId,
+            9.9, 
             taskKind,
             BacklogTask.Status.New);
         
@@ -71,6 +81,9 @@ export class BacklogTaskService
         console.log("Added TestTask: " + JSON.stringify(theNewTask));
         this.tasksChangedSubject.next(this.myTasks.slice());
     }
+    
+    
+    
     
     getRandomInt(max: number)
     {

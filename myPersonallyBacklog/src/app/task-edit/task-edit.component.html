@@ -1,4 +1,5 @@
 <form (ngSubmit)="onSubmit()" #f="ngForm">
+    Id#: {{ currentTask.id }}
     <div>
         <label for="taskTitle">Title: </label>
         <input 
@@ -18,6 +19,16 @@
             [(ngModel)] = "currentTask.description"
             required>
         </textarea>
+    </div>
+    <div>
+        <label for="taskEstimation">Estimation: </label>
+        <input
+            type="number"
+            id="taskEstimation"
+            name="taskEstimation"
+            [(ngModel)] = "currentTask.estimation"
+            >
+
     </div>
     <div>   
         <label for="taskKind">Art: </label>
