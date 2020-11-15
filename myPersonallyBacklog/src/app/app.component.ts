@@ -32,14 +32,23 @@ export class AppComponent implements OnInit {
       this.myTopics = this.backlogtopicService.getTopics();
       console.log("Subscription aktiviert");
     })
+
+    // this.tasksChangedSub = this.backlogtaskService.tasksChangedSubject.subscribe(taskList => {
+    //   console.log("Subscription aktiviert");
+    // })
     
     this.addTestScenario();
   }
 
   addTestScenario()
   {
-        let currenTopictId: number = this.backlogtopicService.addTopic({title: "Erstes Topic", description: "Die 1. Beschreibung", kind: BacklogTopic.Kind.Feature});
-        this.backlogtaskService.addTask({parentId: currenTopictId, title: "Erster Task", description: "Die 1. Beschreibung", kind: BacklogTask.Kind.Documentation});
+        let currenTopictId: number;
+        let currenTasktId: number;
+
+        currenTopictId = this.backlogtopicService.addTopic({title: "Erstes Topic", description: "Die 1. Beschreibung", kind: BacklogTopic.Kind.Feature});
+        currenTasktId = this.backlogtaskService.addTask({parentId: currenTopictId, title: "Erster Task", description: "Die 1. Beschreibung", kind: BacklogTask.Kind.Documentation});
+        currenTasktId = this.backlogtaskService.addTask({parentId: currenTasktId, title: "Erster ChildTask", description: "Die 1. Child Beschreibung", kind: BacklogTask.Kind.Implementation});
+        currenTasktId = this.backlogtaskService.addTask({parentId: currenTasktId, title: "Erster ChildChildTask", description: "Die 1. ChildChild Beschreibung", kind: BacklogTask.Kind.Documentation});
         currenTopictId = this.backlogtopicService.addTopic({title: "Zweites Topic", description: "Die 2. Beschreibung", kind: BacklogTopic.Kind.Refactoring});
         this.backlogtaskService.addTask({parentId: currenTopictId, title: "Zweiter Task", description: "Die 2. Beschreibung", kind: BacklogTask.Kind.Implementation});
         this.backlogtaskService.addTask({parentId: currenTopictId, title: "Dritter Task", description: "Die 3. Beschreibung", kind: BacklogTask.Kind.Testing});

@@ -13,11 +13,6 @@ export class BacklogTopicService{
     
     constructor(private globalIdentifierService: GlobalIdentifierService)
     {
-        // this.myTopics = [
-        //     new BacklogTopic(this.globalIdentifierService.fetchNextId(), "Erstes Topic","Die 1. Beschreibung", BacklogTopic.Kind.Feature, BacklogTopic.Status.Open),
-        //     new BacklogTopic(this.globalIdentifierService.fetchNextId(), "Zweites Topic","Die 2. Beschreibung", BacklogTopic.Kind.Refactoring, BacklogTopic.Status.Open),
-        //     new BacklogTopic(this.globalIdentifierService.fetchNextId(), "Drittes Topic","Die 4. Beschreibung", BacklogTopic.Kind.Bug, BacklogTopic.Status.Open)
-        //   ]  
     }
 
     public getTopics(): BacklogTopic[] {

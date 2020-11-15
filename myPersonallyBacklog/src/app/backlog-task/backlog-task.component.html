@@ -15,4 +15,11 @@ Description: {{ backlogTask.description }}
 </div>
 <button class="editbutton" (click)="onEditClick()">Edit</button>
 <button class="deletebutton" (click)="onDeleteClick()">Delete</button>
-<button class="addworkbutton" (click)="onAddWorkClick()">Add Work</button>
+<button class="addworkbutton" (click)="onAddWorkClick()">Add Task</button>
+<hr>
+<div class="childTask">
+    <app-backlog-task
+    *ngFor="let task of childTasks"
+    [TaskId]="task.id">
+</app-backlog-task>
+</div>

@@ -13,11 +13,6 @@ export class BacklogTaskService
     
     constructor(private globalIdentifierService: GlobalIdentifierService)
     {
-        // this.myTasks = [
-        //     new BacklogTask(this.globalIdentifierService.fetchNextId(), 1, "Erster Task","Die 1. Beschreibung", BacklogTask.Kind.Documentation, BacklogTask.Status.Planned),
-        //     new BacklogTask(this.globalIdentifierService.fetchNextId(), 2, "Zweiter Task","Die 2. Beschreibung", BacklogTask.Kind.Implementation, BacklogTask.Status.InProgress),
-        //     new BacklogTask(this.globalIdentifierService.fetchNextId(), 2, "Dritter Task","Die 4. Beschreibung", BacklogTask.Kind.Testing, BacklogTask.Status.Done)
-        //   ]    
     }
 
     public getTasks(): BacklogTask[]
