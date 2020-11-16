@@ -1,5 +1,5 @@
 <form> 
-    <h3>Backlog-Filter:</h3> 
+    <b>Backlog-Filter:</b> 
     <fieldset>
       <ul>
         <li> 
@@ -27,6 +27,8 @@
           </label>
         </li>
       </ul> 
-    </fieldset> 
+    </fieldset>
+    <label for="taskDepth">Tasktiefe: </label>
+    <input type="number" name="taskDepth" [(ngModel)]="taskDepth" min="0" step="1" value="3" (change)="onTaskDepthChanged()">
   </form>
   

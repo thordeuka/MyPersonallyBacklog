@@ -15,7 +15,8 @@ import { CompileShallowModuleMetadata } from '@angular/compiler';
 export class BacklogTopicComponent implements OnInit {
 
   @Input('TopicId') backlogTopicId: number;
-  @Input('ShowOnlyTopics') showOnlyTopics: boolean;
+  @Input('ShowOnlyTopics') showOnlyTopics: boolean; 
+  
   public backlogTopic: BacklogTopic;
   public backlogTasks: BacklogTask [];
 

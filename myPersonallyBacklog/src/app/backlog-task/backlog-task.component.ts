@@ -12,11 +12,14 @@ import { Subscription } from 'rxjs';
 export class BacklogTaskComponent implements OnInit {
 
   @Input('TaskId') backlogTaskId: number;
+  @Input('TaskDepth') taskDepth: number;
   public backlogTask: BacklogTask;
   public childTasks: BacklogTask [];
   public isExpanded: boolean;
+  public depthIsShown: boolean;
 
   private tasksChangedSub: Subscription;
+  private taskDepthChangedSub: Subscription;
   
   constructor(private backlogTaskService: BacklogTaskService, private router:Router, private route:ActivatedRoute)
   { 
@@ -28,10 +31,24 @@ export class BacklogTaskComponent implements OnInit {
     this.backlogTask = this.backlogTaskService.getTaskById(this.backlogTaskId);
     this.childTasks = this.backlogTaskService.getAllTasksByParentId(this.backlogTaskId);
 
+    this.taskDepthChangedSub = this.backlogTaskService.shownTaskDepthSubject.subscribe(depth => {
+      console.log("Subscription aktiviert: Tiefe = " + depth);
+      this.calcDepthIsShown(depth);
+    })
+    
     this.tasksChangedSub = this.backlogTaskService.tasksChangedSubject.subscribe(taskList => {
       this.childTasks = this.backlogTaskService.getAllTasksByParentId(this.backlogTaskId);
       console.log("Subscription aktiviert");
     })
+
+
+  }
+
+  calcDepthIsShown(depth: number)
+  {
+    console.log("Berechne ob Tiefe angezeigt werden kann!");
+    let taskDepth = this.backlogTaskService.getDepthOfTask(this.backlogTaskId);
+    this.depthIsShown = taskDepth <= depth ? true : false; 
   }
 
   onEditClick(){

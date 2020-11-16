@@ -9,6 +9,7 @@ import { BacklogTask} from './backlogtask.model';
 export class BacklogTaskService
 {
     tasksChangedSubject = new Subject<BacklogTask[]>();
+    shownTaskDepthSubject = new Subject<number>();
     public myTasks: BacklogTask[] = [];
     
     constructor(private globalIdentifierService: GlobalIdentifierService)
@@ -28,6 +29,11 @@ export class BacklogTaskService
             }
         }
         return null;             
+    }
+
+    public getDepthOfTask(id: number): number
+    {
+        return 1; // Todo: Hier muss noch die korrekte Tiefe zurückgegeben werden!!
     }
 
     public getAllTasksByParentId(id: number) : BacklogTask[]
@@ -92,9 +98,6 @@ export class BacklogTaskService
         console.log("Added TestTask: " + JSON.stringify(theNewTask));
         this.tasksChangedSubject.next(this.myTasks.slice());
     }
-    
-    
-    
     
     getRandomInt(max: number)
     {

@@ -18,7 +18,8 @@ export class AppComponent implements OnInit {
   public myTopics: BacklogTopic[];
   public currentTopicKindFilter: BacklogTopic.Kind[] = [BacklogTopic.Kind.Feature];
   public currentOnlyTopicsFilter: boolean;
-
+  // public taskDepth: number;
+  
   private topicsChangedSub: Subscription;
   
   constructor(private backlogtaskService: BacklogTaskService, private backlogtopicService: BacklogTopicService, private router:Router, private route:ActivatedRoute){} // HIER  weiter zu topics ändern anstatt tasks
@@ -78,5 +79,11 @@ export class AppComponent implements OnInit {
     this.currentOnlyTopicsFilter = event;
     console.log("filter changed");
   }
+  
+  // onFilterBarTaskDepthChanged(event: number)
+  // {
+  //   this.taskDepth = event;
+  //   console.log("taskDepth changed");
+  // }
 
 }
