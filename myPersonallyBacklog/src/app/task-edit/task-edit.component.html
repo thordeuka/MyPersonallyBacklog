@@ -6,7 +6,7 @@
             type="text"
             id="taskTitle"
             name="taskTitle"
-            [(ngModel)] = "currentTask.title"
+            [ngModel] = currentTask.title
             required
             >
     </div>
@@ -16,7 +16,7 @@
             id="taskDescription"
             name="taskDescription"
             rows="3"
-            [(ngModel)] = "currentTask.description"
+            [ngModel] = currentTask.description
             required>
         </textarea>
     </div>
@@ -26,16 +26,15 @@
             type="number"
             id="taskEstimation"
             name="taskEstimation"
-            [(ngModel)] = "currentTask.estimation"
+            [ngModel] = currentTask.estimation
             >
-
     </div>
     <div>   
         <label for="taskKind">Art: </label>
         <select 
             id="taskKind"
             name="taskKind"
-            [(ngModel)] = "currenTaskStringKind"
+            [ngModel] = currenTaskStringKind
             required>
             <option value="Implementation">Implementation</option>
             <option value="Testing">Testing</option>
@@ -47,7 +46,7 @@
         <select 
             id="taskStatus"
             name="taskStatus"
-            [(ngModel)] = "currenTaskStringStatus"
+            [ngModel] = currenTaskStringStatus
             required>
             <option value="New">New</option>
             <option value="Postponed">Postponed</option>

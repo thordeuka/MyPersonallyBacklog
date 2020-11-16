@@ -1,7 +1,6 @@
-import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm} from '@angular/forms'
 import { ActivatedRoute, Params } from '@angular/router';
-import { threadId } from 'worker_threads';
 import { BacklogTask} from '../backlog-task/backlogtask.model'
 import {BacklogTaskService} from '../backlog-task/backlogtask.service'
 
@@ -19,26 +18,45 @@ export class TaskEditComponent implements OnInit {
   public currenTaskStringKind;
   public submitCaption: string;
 
-  constructor(private backlogTaskService: BacklogTaskService, private route: ActivatedRoute) { 
+  constructor(private backlogTaskService: BacklogTaskService, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
     
     this.route.params.subscribe( 
       (params:Params) => {
         console.log(params)
         this.taskId = params['id'];
-        this.onEditViewLoad();
+        this.initForm();       
       }
       );
-  }
-
-  ngOnInit(): void {
+    
+    
+    console.log("INIT");
   }
 
   onEditViewLoad(){
     console.log("Lade Editmode mit Id: " + this.taskId);
     this.currentTask = this.backlogTaskService.getTaskById(+this.taskId);
-    this.currenTaskStringStatus = this.currentTask.getStatusAsString();
-    this.currenTaskStringKind = this.currentTask.getKindAsString();
+    this.initForm();
+    //this.currenTaskStringStatus = this.currentTask.getStatusAsString();
+    //this.currenTaskStringKind = this.currentTask.getKindAsString();
 
+
+  }
+
+  initForm()
+  {
+    this.currentTask = this.backlogTaskService.getTaskById(+this.taskId);
+
+    // this.signupForm.setValue(
+    //   {
+    //     taskTitle: this.currentTask.title,
+    //     taskDescription: this.currentTask.description,
+    //     taskEstimation: this.currentTask.estimation,
+    //     taskKind: this.currentTask.getKindAsString(),
+    //     taskStatus: this.currentTask.getStatusAsString()
+    //   }
+    // );
     if(this.currentTask.id>0)
     {
       this.submitCaption = "Save";
@@ -47,8 +65,12 @@ export class TaskEditComponent implements OnInit {
     {
       this.submitCaption = "Create";
     }
-  }
 
+    this.currenTaskStringStatus = this.currentTask.getStatusAsString();
+    this.currenTaskStringKind = this.currentTask.getKindAsString();
+  }
+  
+  
   onSubmit(){
     console.log(this.signupForm);
     
@@ -57,7 +79,15 @@ export class TaskEditComponent implements OnInit {
     //}
     if(this.currentTask.id>0)
     {
-      this.backlogTaskService.updateTask(this.currentTask.id, {estimation: 9999999999}); // TODO: Hier die vernünftigen Erte einsetzen
+      this.backlogTaskService.updateTask(
+        this.currentTask.id, 
+        {
+          title: this.signupForm.value.taskTitle,
+          description: this.signupForm.value.taskDescription,
+          estimation: this.signupForm.value.taskEstimation,
+          taskKind: this.signupForm.value.taskKind,
+          status: this.signupForm.value.taskStatus
+        });
     }
     else
     {
@@ -66,7 +96,7 @@ export class TaskEditComponent implements OnInit {
           parentId: null,
           title: this.signupForm.value.taskTitle,
           description: this.signupForm.value.taskDescription,
-          estimation: this.signupForm.value.estimation,
+          estimation: this.signupForm.value.taskEstimation,
           kind: BacklogTask.Kind.Implementation
         }
       );

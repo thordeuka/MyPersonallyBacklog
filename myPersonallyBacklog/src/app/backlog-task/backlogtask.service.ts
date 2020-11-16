@@ -58,9 +58,20 @@ export class BacklogTaskService
         let theTask = this.getTaskById(theId);
         for (let key in theKeyValues)
         {
-            theTask[key] = theKeyValues[key];
+            if((key != "taskKind") && (key != "status"))
+            {
+                if(theTask[key])theTask[key] = theKeyValues[key];
+            }
+            else if(key === "taskKind")
+            {
+                theTask.setKindByString(theKeyValues[key]);
+            }
+            else if(key === "status")
+            {
+                theTask.setStatusByString(theKeyValues[key]);
+            } 
         }
-        
+        this.tasksChangedSubject.next(this.myTasks.slice());
     }
     // Only for testing, can be removed when Task Adding is implemented ///////////////////////
     addTestTask(): void 

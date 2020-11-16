@@ -37,7 +37,7 @@ export class BacklogTask{ // TODO: in BacklogItem umbenennen
 
     public setKindByString(theKind: string)
     {
-        this.taskKind = BacklogTask.Status[theKind];
+        this.taskKind = BacklogTask.Kind[theKind];
     }
 }
 
