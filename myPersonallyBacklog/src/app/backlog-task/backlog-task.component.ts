@@ -14,6 +14,7 @@ export class BacklogTaskComponent implements OnInit {
   @Input('TaskId') backlogTaskId: number;
   public backlogTask: BacklogTask;
   public childTasks: BacklogTask [];
+  public isExpanded: boolean;
 
   private tasksChangedSub: Subscription;
   
@@ -22,6 +23,8 @@ export class BacklogTaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+    this.isExpanded = true;
     this.backlogTask = this.backlogTaskService.getTaskById(this.backlogTaskId);
     this.childTasks = this.backlogTaskService.getAllTasksByParentId(this.backlogTaskId);
 
@@ -36,6 +39,11 @@ export class BacklogTaskComponent implements OnInit {
     this.router.navigate(['edittask', this.backlogTaskId], {relativeTo: this.route});
   }
 
+  hasChilds(): boolean
+  {
+    return this.childTasks.length > 0 ? true : false;
+  }
+
   onDeleteClick(){
     console.log(this.backlogTask.title + ": delete was clicked!");
     this.backlogTaskService.removeTask(this.backlogTaskId);
@@ -43,6 +51,11 @@ export class BacklogTaskComponent implements OnInit {
 
   onAddWorkClick(){
     console.log(this.backlogTask.title + ": add work was clicked!");
+  }
+
+  onToggleCollapse()
+  {
+    this.isExpanded = !this.isExpanded;
   }
 
 }

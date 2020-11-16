@@ -1,5 +1,9 @@
 <hr>
-<p class="title">#{{ backlogTask.id }} - Title: {{ backlogTask.title }}</p>
+<p class="title">
+    <button *ngIf="isExpanded && hasChilds()" (click)="onToggleCollapse()">-</button>
+    <button *ngIf="!isExpanded && hasChilds()" (click)="onToggleCollapse()">+</button>
+    #{{ backlogTask.id }} - Title: {{ backlogTask.title }}
+</p>
 <div [ngSwitch]=backlogTask.taskKind>
     <p *ngSwitchCase="0">Kind: {{ "Implementation" }}</p>
     <p *ngSwitchCase="1">Kind: {{ "Testing" }}</p>
@@ -17,7 +21,7 @@ Description: {{ backlogTask.description }}
 <button class="deletebutton" (click)="onDeleteClick()">Delete</button>
 <button class="addworkbutton" (click)="onAddWorkClick()">Add Task</button>
 <hr>
-<div class="childTask">
+<div *ngIf="isExpanded" class="childTask">
     <app-backlog-task
     *ngFor="let task of childTasks"
     [TaskId]="task.id">
