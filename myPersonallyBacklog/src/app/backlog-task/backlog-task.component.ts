@@ -12,7 +12,6 @@ import { Subscription } from 'rxjs';
 export class BacklogTaskComponent implements OnInit {
 
   @Input('TaskId') backlogTaskId: number;
-  @Input('TaskDepth') taskDepth: number;
   public backlogTask: BacklogTask;
   public childTasks: BacklogTask [];
   public isExpanded: boolean;
@@ -28,24 +27,24 @@ export class BacklogTaskComponent implements OnInit {
     
     this.backlogTask = this.backlogTaskService.getTaskById(this.backlogTaskId);
     this.childTasks = this.backlogTaskService.getAllTasksByParentId(this.backlogTaskId);
+    console.log("ngOnInit: " + this.backlogTaskId);
+    this.calcDepthIsShown(this.backlogTaskService.shownTaskDepth);
+
+    this.tasksChangedSub = this.backlogTaskService.tasksChangedSubject.subscribe(taskList => {
+      this.childTasks = this.backlogTaskService.getAllTasksByParentId(this.backlogTaskId);
+    })
 
     this.taskDepthChangedSub = this.backlogTaskService.shownTaskDepthSubject.subscribe(depth => {
-      console.log("Subscription aktiviert: Tiefe = " + depth);
       this.calcDepthIsShown(depth);
     })
     
-    this.tasksChangedSub = this.backlogTaskService.tasksChangedSubject.subscribe(taskList => {
-      this.childTasks = this.backlogTaskService.getAllTasksByParentId(this.backlogTaskId);
-      console.log("Subscription aktiviert");
-    })
-
-
   }
 
   calcDepthIsShown(depth: number)
   {
+    console.log("calcDepthIsShown: Task " + this.backlogTask.id); 
     let taskDepth = this.backlogTaskService.getDepthOfTask(this.backlogTaskId);
-    this.isExpanded = taskDepth < depth ? true : false; 
+    this.isExpanded = taskDepth < depth ? true : false;
   }
 
   onEditClick(){

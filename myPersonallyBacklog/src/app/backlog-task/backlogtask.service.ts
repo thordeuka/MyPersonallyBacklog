@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { GlobalIdentifierService } from '../global-identifier.service';
 import { BacklogTask} from './backlogtask.model';
 
@@ -8,12 +8,17 @@ import { BacklogTask} from './backlogtask.model';
 })
 export class BacklogTaskService
 {
+    taskDepthChangedSub = new Subscription;
     tasksChangedSubject = new Subject<BacklogTask[]>();
-    shownTaskDepthSubject = new Subject<number>();
+    shownTaskDepthSubject = new BehaviorSubject<number>(1);
+    public shownTaskDepth:number = 1; // Workaround for initiated tasks who ddoesn't get the next state from subject and therefor the isExpanded attribut is not set. but this should work with Behaviour subjects. Why not? Refactoring!  
     public myTasks: BacklogTask[] = [];
     
     constructor(private globalIdentifierService: GlobalIdentifierService)
     {
+        this.taskDepthChangedSub = this.shownTaskDepthSubject.subscribe(depth => {
+            this.shownTaskDepth = depth;
+          })  
     }
 
     public getTasks(): BacklogTask[]

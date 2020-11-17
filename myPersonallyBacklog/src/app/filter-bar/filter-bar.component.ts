@@ -43,7 +43,7 @@ export class FilterBarComponent implements OnInit {
 
   onTaskDepthChanged()
   {
-    console.log(this.taskDepth);
+    console.log(this.taskDepth + "wurde geändert!");
     this.backlogtaskService.shownTaskDepthSubject.next(this.taskDepth);
     //this.taskDepthChangedEvent.emit(this.taskDepth);
   }

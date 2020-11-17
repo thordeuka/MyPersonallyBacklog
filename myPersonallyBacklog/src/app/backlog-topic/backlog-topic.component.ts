@@ -31,12 +31,10 @@ export class BacklogTopicComponent implements OnInit {
     this.backlogTasks = this.backlogTaskService.getAllTasksByParentId(this.backlogTopicId);
 
     this.taskDepthChangedSub = this.backlogTaskService.shownTaskDepthSubject.subscribe(depth => {
-      console.log("Subscription aktiviert: Tiefe = " + depth);
       this.calcDepthIsShown(depth);
     })
     this.tasksChangedSub = this.backlogTaskService.tasksChangedSubject.subscribe(taskList => {
       this.backlogTasks = this.backlogTaskService.getAllTasksByParentId(this.backlogTopicId);
-      console.log("Subscription aktiviert");
     })
   }
 
