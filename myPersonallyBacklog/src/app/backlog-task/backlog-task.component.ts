@@ -16,7 +16,6 @@ export class BacklogTaskComponent implements OnInit {
   public backlogTask: BacklogTask;
   public childTasks: BacklogTask [];
   public isExpanded: boolean;
-  public depthIsShown: boolean;
 
   private tasksChangedSub: Subscription;
   private taskDepthChangedSub: Subscription;
