@@ -8,8 +8,8 @@
 <div class="leftSide">
     <app-filter-bar 
         (onFilterChanged)="onFilterBarFilterChanged($event)" 
-        (onOnlyTopicsChanged)="onFilterBarTopicFilterChanged($event)"
-        (onTaskDepthChanged)="onFilterBarTaskDepthChanged($event)"></app-filter-bar>
+        (onOnlyTopicsChanged)="onFilterBarTopicFilterChanged($event)">
+    </app-filter-bar>
     <app-backlog-topic
         *ngFor="let topic of myTopics | topicKindFilter: currentTopicKindFilter"
         [TopicId]="topic.id" [ShowOnlyTopics]="currentOnlyTopicsFilter">

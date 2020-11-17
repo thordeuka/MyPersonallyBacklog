@@ -27,7 +27,6 @@ export class BacklogTaskComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.isExpanded = true;
     this.backlogTask = this.backlogTaskService.getTaskById(this.backlogTaskId);
     this.childTasks = this.backlogTaskService.getAllTasksByParentId(this.backlogTaskId);
 
@@ -46,9 +45,8 @@ export class BacklogTaskComponent implements OnInit {
 
   calcDepthIsShown(depth: number)
   {
-    console.log("Berechne ob Tiefe angezeigt werden kann!");
     let taskDepth = this.backlogTaskService.getDepthOfTask(this.backlogTaskId);
-    this.depthIsShown = taskDepth <= depth ? true : false; 
+    this.isExpanded = taskDepth < depth ? true : false; 
   }
 
   onEditClick(){

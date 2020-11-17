@@ -1,31 +1,29 @@
 <hr>
-<div *ngIf="depthIsShown">
-    <p class="title">
-        <button *ngIf="isExpanded && hasChilds()" (click)="onToggleCollapse()">-</button>
-        <button *ngIf="!isExpanded && hasChilds()" (click)="onToggleCollapse()">+</button>
-        #{{ backlogTask.id }} - Title: {{ backlogTask.title }}
-    </p>
-    <div [ngSwitch]=backlogTask.taskKind>
-        <p *ngSwitchCase="0">Kind: {{ "Implementation" }}</p>
-        <p *ngSwitchCase="1">Kind: {{ "Testing" }}</p>
-        <p *ngSwitchCase="2">Kind: {{ "Documentation" }}</p>
-    </div>
-    Description: {{ backlogTask.description }}
-    <div [ngSwitch]=backlogTask.status>
-        <p *ngSwitchCase="0">Status: {{ "New" }}</p>
-        <p *ngSwitchCase="1">Status: {{ "Postponed" }}</p>
-        <p *ngSwitchCase="2">Status: {{ "Planned" }}</p>
-        <p *ngSwitchCase="3">Status: {{ "InProgress" }}</p>
-        <p *ngSwitchCase="4">Status: {{ "Done" }}</p>
-    </div>
-    <button class="editbutton" (click)="onEditClick()">Edit</button>
-    <button class="deletebutton" (click)="onDeleteClick()">Delete</button>
-    <button class="addworkbutton" (click)="onAddWorkClick()">Add Task</button>
-    <hr>
-    <div *ngIf="isExpanded" class="childTask">
-        <app-backlog-task
-        *ngFor="let task of childTasks"
-        [TaskId]="task.id">
-    </app-backlog-task>
-    </div>
+<p class="title">
+    <button *ngIf="isExpanded && hasChilds()" (click)="onToggleCollapse()">-</button>
+    <button *ngIf="!isExpanded && hasChilds()" (click)="onToggleCollapse()">+</button>
+    #{{ backlogTask.id }} - Title: {{ backlogTask.title }}
+</p>
+<div [ngSwitch]=backlogTask.taskKind>
+    <p *ngSwitchCase="0">Kind: {{ "Implementation" }}</p>
+    <p *ngSwitchCase="1">Kind: {{ "Testing" }}</p>
+    <p *ngSwitchCase="2">Kind: {{ "Documentation" }}</p>
+</div>
+Description: {{ backlogTask.description }}
+<div [ngSwitch]=backlogTask.status>
+    <p *ngSwitchCase="0">Status: {{ "New" }}</p>
+    <p *ngSwitchCase="1">Status: {{ "Postponed" }}</p>
+    <p *ngSwitchCase="2">Status: {{ "Planned" }}</p>
+    <p *ngSwitchCase="3">Status: {{ "InProgress" }}</p>
+    <p *ngSwitchCase="4">Status: {{ "Done" }}</p>
+</div>
+<button class="editbutton" (click)="onEditClick()">Edit</button>
+<button class="deletebutton" (click)="onDeleteClick()">Delete</button>
+<button class="addworkbutton" (click)="onAddWorkClick()">Add Task</button>
+<hr>
+<div *ngIf="isExpanded" class="childTask">
+    <app-backlog-task
+    *ngFor="let task of childTasks"
+    [TaskId]="task.id">
+</app-backlog-task>
 </div>

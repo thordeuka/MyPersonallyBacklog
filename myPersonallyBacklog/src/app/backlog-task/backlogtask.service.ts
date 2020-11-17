@@ -33,7 +33,14 @@ export class BacklogTaskService
 
     public getDepthOfTask(id: number): number
     {
-        return 1; // Todo: Hier muss noch die korrekte Tiefe zurückgegeben werden!!
+        let theTask: any = this.getTaskById(id);
+        let theDepth: number = 0;
+        while(theTask!=null)
+        {
+            theDepth++;
+            theTask = this.getTaskById(theTask.parent);
+        }
+        return theDepth;
     }
 
     public getAllTasksByParentId(id: number) : BacklogTask[]
