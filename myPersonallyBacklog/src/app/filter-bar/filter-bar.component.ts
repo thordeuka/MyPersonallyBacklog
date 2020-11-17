@@ -13,7 +13,7 @@ export class FilterBarComponent implements OnInit {
   public refactoringChecked: boolean = true;
   public bugChecked: boolean = true;
   public onlyTopicsChecked: boolean = false;
-  public taskDepth: number = 3;
+  public taskDepth: number = 1;
 
   @Output('onFilterChanged') filterChangedEvent : EventEmitter<BacklogTopic.Kind[]> = new EventEmitter<BacklogTopic.Kind[]>();
   @Output('onOnlyTopicsChanged') filterParentsChangedEvent : EventEmitter<boolean> = new EventEmitter<boolean>();

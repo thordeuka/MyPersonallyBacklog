@@ -64,4 +64,9 @@ export class BacklogTopicComponent implements OnInit {
     console.log(this.backlogTopic.title + ": add work was clicked!");
   }
 
+  onToggleCollapse()
+  {
+    this.isExpanded = !this.isExpanded;
+  }
+
 }

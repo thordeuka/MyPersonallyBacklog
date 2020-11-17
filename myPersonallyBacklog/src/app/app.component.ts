@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   
   private topicsChangedSub: Subscription;
   
-  constructor(private backlogtaskService: BacklogTaskService, private backlogtopicService: BacklogTopicService, private router:Router, private route:ActivatedRoute){} // HIER  weiter zu topics ändern anstatt tasks
+  constructor(private backlogtaskService: BacklogTaskService, private backlogtopicService: BacklogTopicService, private router:Router, private route:ActivatedRoute){}
   
   ngOnInit(): void {
     console.log("ngOnInit()");
