@@ -13,8 +13,8 @@ export class BacklogTask{ // TODO: in BacklogItem umbenennen
     (
         public id: number,
         public parent: number,
-        public title: string,
-        public description: string,
+        public title: String,
+        public description: String,
         public estimation: number,
         public taskKind: BacklogTask.Kind,
         public status: BacklogTask.Status

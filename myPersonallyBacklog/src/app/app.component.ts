@@ -35,8 +35,8 @@ export class AppComponent implements OnInit {
     })
 
     // this.tasksChangedSub = this.backlogtaskService.tasksChangedSubject.subscribe(taskList => {
-    //   console.log("Subscription aktiviert");
-    // })
+    //    console.log("Subscription aktiviert");
+    //  })
     
     this.addTestScenario();
   }
@@ -57,6 +57,10 @@ export class AppComponent implements OnInit {
         this.backlogtaskService.addTask({parentId: currenTopictId, title: "Dritter Task", description: "Die 3. Beschreibung",estimation: 130.9,  kind: BacklogTask.Kind.Testing});
   }
   
+  onUpdateListe()
+  {
+    this.backlogtopicService.topicChangedSubject.next();
+  }
   
   // Only for testing, can be removed when Task Adding is implemented ///////////////////////
   onAddTestTask(){

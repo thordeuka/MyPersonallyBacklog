@@ -77,12 +77,12 @@ export class TaskEditComponent implements OnInit {
   initNewMode()
   {
     this.submitCaption = "Create";
-    this.headline = "neuer Task";
+    this.headline = "Erstelle neuen Task";
   }
 
   onCreateChildTask()
   {
-    this.router.navigate(['newtask', this.currentTask.parent]);
+    this.router.navigate(['newtask', this.currentTask.id]);
   }
 
   onEditViewLoad()
@@ -92,33 +92,30 @@ export class TaskEditComponent implements OnInit {
     this.initForm();
   }
 
-  onSubmit(){
+  onSubmit()
+  {
     console.log(this.signupForm);
-    
-    //let newTask: {parentId: number, title: string, description: string, kind: BacklogTask.TaskKind} = {
-    //  parentId: null,
-    //}
-    if(this.currentTask.id>0)
+    if(this.editMode)
     {
       this.backlogTaskService.updateTask(
         this.currentTask.id, 
         {
-          title: this.signupForm.value.taskTitle,
-          description: this.signupForm.value.taskDescription,
-          estimation: this.signupForm.value.taskEstimation,
-          taskKind: this.signupForm.value.taskKind,
-          status: this.signupForm.value.taskStatus
+          title: this.formData.title,
+          description: this.formData.description,
+          estimation: this.formData.estimation,
+          taskKind: this.formData.taskKind,
+          status: this.formData.taskStatus
         });
     }
     else
     {
       this.backlogTaskService.addTask(
         {
-          parentId: null,
-          title: this.signupForm.value.taskTitle,
-          description: this.signupForm.value.taskDescription,
-          estimation: this.signupForm.value.taskEstimation,
-          kind: BacklogTask.Kind.Implementation
+          parentId: +this.parentId,
+          title: this.formData.title,
+          description: this.formData.description,
+          estimation: this.formData.estimation,
+          kind: BacklogTask.Kind[this.formData.taskKind.toString()]
         }
       );
     }
