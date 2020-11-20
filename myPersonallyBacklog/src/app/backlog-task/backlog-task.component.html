@@ -19,7 +19,7 @@ Description: {{ backlogTask.description }}
 </div>
 <button class="editbutton" (click)="onEditClick()">Edit</button>
 <button class="deletebutton" (click)="onDeleteClick()">Delete</button>
-<button class="addworkbutton" (click)="onAddWorkClick()">Add Task</button>
+<button class="addworkbutton" (click)="onAddSubTaskClick()">Add Sub Task</button>
 <hr>
 <div *ngIf="isExpanded" class="childTask">
     <app-backlog-task

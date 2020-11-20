@@ -62,8 +62,9 @@ export class BacklogTaskComponent implements OnInit {
     this.backlogTaskService.removeTask(this.backlogTaskId);
   }
 
-  onAddWorkClick(){
+  onAddSubTaskClick(){
     console.log(this.backlogTask.title + ": add work was clicked!");
+    this.router.navigate(['newtask', this.backlogTaskId], {relativeTo: this.route});
   }
 
   onToggleCollapse()
