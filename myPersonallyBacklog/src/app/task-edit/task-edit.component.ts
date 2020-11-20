@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm} from '@angular/forms'
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BacklogTask} from '../backlog-task/backlogtask.model'
 import {BacklogTaskService} from '../backlog-task/backlogtask.service'
 
@@ -13,12 +13,24 @@ export class TaskEditComponent implements OnInit {
   @ViewChild('f', {static:true}) signupForm: NgForm;
   
   private taskId: number;
+  private parentId: number;
   public currentTask: BacklogTask;
-  public currenTaskStringStatus;
-  public currenTaskStringKind;
+  
   public submitCaption: string;
+  private editMode: boolean;
+  public headline: String;
 
-  constructor(private backlogTaskService: BacklogTaskService, private route: ActivatedRoute) {}
+  // Initialization here is necessary otherwise the form data binding doesn't work
+  public formData: {title: String, description: String, estimation: number, taskKind: String, taskStatus: String} = 
+  {
+    title: "",
+    description: "",
+    estimation: 0,
+    taskKind: "Implementation",
+    taskStatus: "New"
+  };
+
+  constructor(private backlogTaskService: BacklogTaskService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     
@@ -26,51 +38,60 @@ export class TaskEditComponent implements OnInit {
       (params:Params) => {
         console.log(params)
         this.taskId = params['id'];
+        this.parentId = params['parentId'];
+        this.editMode = params['id'] != null;
         this.initForm();       
       }
       );
-    
-    
     console.log("INIT");
   }
+ 
+  initForm()
+  {
+    if(this.editMode) this.initEditMode();
+    else this.initNewMode();
 
-  onEditViewLoad(){
+  }
+
+  initEditMode()
+  {
+    this.currentTask = this.backlogTaskService.getTaskById(+this.taskId);
+    this.submitCaption = "Save";
+    this.headline = "Editiere Task# " + this.currentTask.id;
+
+    if(this.currentTask === null)
+    {
+      console.error("Task doesn't exist!!!");
+    }
+    
+    this.formData = 
+    {
+      title: this.currentTask.title,
+      description: this.currentTask.description,
+      estimation: this.currentTask.estimation,
+      taskKind: this.currentTask.getKindAsString(),
+      taskStatus: this.currentTask.getStatusAsString()
+    }
+  }
+
+  initNewMode()
+  {
+    this.submitCaption = "Create";
+    this.headline = "neuer Task";
+  }
+
+  onCreateChildTask()
+  {
+    this.router.navigate(['newtask', this.currentTask.parent]);
+  }
+
+  onEditViewLoad()
+  {
     console.log("Lade Editmode mit Id: " + this.taskId);
     this.currentTask = this.backlogTaskService.getTaskById(+this.taskId);
     this.initForm();
-    //this.currenTaskStringStatus = this.currentTask.getStatusAsString();
-    //this.currenTaskStringKind = this.currentTask.getKindAsString();
-
-
   }
 
-  initForm()
-  {
-    this.currentTask = this.backlogTaskService.getTaskById(+this.taskId);
-
-    // this.signupForm.setValue(
-    //   {
-    //     taskTitle: this.currentTask.title,
-    //     taskDescription: this.currentTask.description,
-    //     taskEstimation: this.currentTask.estimation,
-    //     taskKind: this.currentTask.getKindAsString(),
-    //     taskStatus: this.currentTask.getStatusAsString()
-    //   }
-    // );
-    if(this.currentTask.id>0)
-    {
-      this.submitCaption = "Save";
-    }
-    else
-    {
-      this.submitCaption = "Create";
-    }
-
-    this.currenTaskStringStatus = this.currentTask.getStatusAsString();
-    this.currenTaskStringKind = this.currentTask.getKindAsString();
-  }
-  
-  
   onSubmit(){
     console.log(this.signupForm);
     
