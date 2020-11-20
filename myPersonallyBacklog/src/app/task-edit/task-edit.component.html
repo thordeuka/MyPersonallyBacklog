@@ -63,7 +63,7 @@
             >
             {{ submitCaption }}
         </button>
-        <button 
+        <button *ngIf="editMode" 
             (click)="onCreateChildTask()"
             >
             Create Childtask

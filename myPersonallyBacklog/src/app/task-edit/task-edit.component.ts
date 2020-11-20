@@ -77,7 +77,7 @@ export class TaskEditComponent implements OnInit {
   initNewMode()
   {
     this.submitCaption = "Create";
-    this.headline = "Erstelle neuen Task";
+    this.headline = "Erstelle neuen ChildTask für Id# " + this.parentId;
   }
 
   onCreateChildTask()
