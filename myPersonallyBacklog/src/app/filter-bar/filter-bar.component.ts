@@ -21,12 +21,14 @@ export class FilterBarComponent implements OnInit {
   
   constructor(private backlogtaskService: BacklogTaskService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
     this.onCheckedChange();
     this.onOnlyTopicsCheckedChange();
   }
 
-  onCheckedChange(){
+  onCheckedChange()
+  {
     console.log("checkedChanged: " + this.featureChecked + " " + this.refactoringChecked + " " + this.bugChecked);
     
     let checkedstatus: BacklogTopic.Kind[] = [];
@@ -37,7 +39,8 @@ export class FilterBarComponent implements OnInit {
     this.filterChangedEvent.emit(checkedstatus);
   }
 
-  onOnlyTopicsCheckedChange(){
+  onOnlyTopicsCheckedChange()
+  {
     this.filterParentsChangedEvent.emit(this.onlyTopicsChecked);
   }
 
@@ -45,7 +48,6 @@ export class FilterBarComponent implements OnInit {
   {
     console.log(this.taskDepth + "wurde geändert!");
     this.backlogtaskService.shownTaskDepthSubject.next(this.taskDepth);
-    //this.taskDepthChangedEvent.emit(this.taskDepth);
   }
 
 }
