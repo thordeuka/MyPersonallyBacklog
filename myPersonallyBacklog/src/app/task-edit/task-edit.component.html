@@ -41,7 +41,7 @@
             <option value="Documentation">Dokumentation</option>
         </select>
     </div>
-    <div>   
+    <div *ngIf="editMode" >   
         <label for="formStatus">Status: </label>
         <select 
             id="formStatus"
