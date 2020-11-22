@@ -17,7 +17,7 @@ export class TaskEditComponent implements OnInit {
   public currentTask: BacklogTask;
   
   public submitCaption: string;
-  private editMode: boolean;
+  public editMode: boolean;
   public headline: String;
 
   // Initialization here is necessary otherwise the form data binding doesn't work
